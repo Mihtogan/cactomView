@@ -3,7 +3,8 @@
     <declare-styleable name="StatusBarView">
         <attr name="drawMode" format="integer" />
         <attr name="colorBackground" format="color" />
-        <attr name="myRounding" format="float" />
-        <attr name="gapBetween" format="float" />
+        <attr name="myRounding" format="dimension" />
+        <attr name="gapBetween" format="dimension" />
+        <attr name="animationTime" format="integer" />
     </declare-styleable>
 </resources>

@@ -6,17 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.castomview.statusbar.StatusBarView
+    <com.example.castomview.statusbar.MaterialUsageIndicator
         android:id="@+id/statusBar"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        app:colorBackground="#BCB8B8"
-        app:gapBetween="0.01"
+        android:layout_width="350dp"
+        android:layout_height="20dp"
+        app:animationTime="2000"
+        app:colorBackground="#DEDADA"
+        app:drawMode="2"
+        app:gapBetween="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:myRounding="0.8" />
-
+        app:myRounding="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
