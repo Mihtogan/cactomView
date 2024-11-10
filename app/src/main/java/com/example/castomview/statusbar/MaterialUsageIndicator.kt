@@ -2,7 +2,6 @@ package com.example.castomview.statusbar
 
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -11,11 +10,8 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.graphics.RectF
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import androidx.core.content.withStyledAttributes
-import androidx.core.graphics.applyCanvas
-import androidx.core.graphics.createBitmap
 import com.example.castomview.R
 
 class MaterialUsageIndicator @JvmOverloads constructor(
@@ -146,7 +142,7 @@ class MaterialUsageIndicator @JvmOverloads constructor(
         drawStat.clear()
 
         var left = 0f
-        var right = 0f
+        var right: Float
         val wid = widthView - (statuses.size - 1) * gap
 
         statuses.forEach { element ->
@@ -188,7 +184,7 @@ class MaterialUsageIndicator @JvmOverloads constructor(
             it.rightForAnim = it.right
         }
 
-        var aniRig = 0f
+        var aniRig: Float
 
         ValueAnimator.ofFloat(0f, 1f).apply {
             duration = animationTime.toLong()
