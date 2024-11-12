@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StateCountIndicator">
+        <attr name="textSize" format="dimension" />
+        <attr name="colorCircul" format="color" />
+        <attr name="colorStatusDescription" format="color" />
+        <attr name="colorStatusQuantity" format="color" />
+        <attr name="colorStatusTotalQuantity" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="StatusIndicatorViewGroup">
+        <attr name="indicatorColor" format="color"/>
+        <attr name="statusTextColor" format="color"/>
+        <attr name="countColor" format="color"/>
+        <attr name="statusText" format="string"/>
+        <attr name="count" format="integer"/>
+        <attr name="android:textSize" format="dimension"/>
+    </declare-styleable>
+</resources>
