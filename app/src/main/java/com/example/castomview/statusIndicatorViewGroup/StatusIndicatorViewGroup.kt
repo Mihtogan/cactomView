@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.withStyledAttributes
-import androidx.core.view.size
 import com.example.castomview.R
 
 class StatusIndicatorViewGroup @JvmOverloads constructor(
