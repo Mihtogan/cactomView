@@ -10,14 +10,15 @@
         android:id="@+id/statusBar"
         android:layout_width="350dp"
         android:layout_height="20dp"
-        app:animationTime="2000"
-        app:colorBackground="#DEDADA"
-        app:drawMode="2"
-        app:gapBetween="5dp"
+        app:statusBar_animationTime="4000"
+        app:statusBar_colorBackground="#DEDADA"
+        app:statusBar_drawMode="1"
+        app:statusBar_gapBetween="7dp"
+        app:statusBar_isRoundingStatusLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:myRounding="10dp" />
+        app:statusBar_myRounding="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

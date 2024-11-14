@@ -8,7 +8,6 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
-import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.withStyledAttributes
@@ -24,64 +23,82 @@ class MaterialUsageIndicator @JvmOverloads constructor(
     defStyleRes
 ) {
     companion object {
-        private const val defHeight = 60
-        private const val defWidth = 500
+        private const val MIN_HEIGHT = 20
+        private const val MIN_WIDTH = 40
 
-        private const val defColorBackground = Color.BLACK
+        private const val DEFAULT_COLOR_BACKGROUND = Color.BLACK
 
-        private const val defDrawMode = 0
+        private const val DEFAULT_DRAW_MODE = 0
 
-        private const val defCornerRadius = 0f
-        private const val defGap = 5f
+        private const val DEFAULT_CORNER_RADIUS = 0f
+        private const val DEFAULT_GAP = 5f
 
-        private const val defAnimationTime = 2000
+        private const val DEFAULT_ANIMATION_TIME = 2000
+
+        private const val IS_ROUNDING_STATUS_LINE = false
     }
 
-    private val paintBack = Paint().apply {
+    private val paintBackground = Paint().apply {
         isAntiAlias = true
         style = Paint.Style.FILL
     }
     private val paintStatus = Paint().apply {
+        isAntiAlias = true
         xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP)
     }
 
-    private val rect = RectF()
     private val path = Path()
 
-    private var drawMode = defDrawMode
+    private var drawMode = DEFAULT_DRAW_MODE
     private val drawOptions by lazy {
         setOf(
-            drawOption1,
-            drawOptionAnimat1,
-            drawOptionAnimat2,
+            simpleRendering,
+            synchronousAnimation,
+            sequentialAnimation,
         )
     }
-    private var animationTime = defAnimationTime
+    private var animationTime = DEFAULT_ANIMATION_TIME
 
-    private var heightView = defHeight
-    private var widthView = defWidth
+    private var heightView = MIN_HEIGHT
+    private var widthView = MIN_WIDTH
 
-    private var colorBackground = defColorBackground
+    private var colorBackground = DEFAULT_COLOR_BACKGROUND
 
-    private var cornerRadius = defCornerRadius
-    private var gap = defGap
+    private var cornerRadius = DEFAULT_CORNER_RADIUS
+    private var gap = DEFAULT_GAP
+
+    private var isRoundingStatusLine = IS_ROUNDING_STATUS_LINE
 
     private val statuses = mutableListOf<StatusElement>()
     private var statusSymValue = 0
     private val drawStat = mutableListOf<DrawStat>()
 
     init {
-        context.withStyledAttributes(attributes, R.styleable.StatusBarView) {
-            drawMode =
-                getInt(R.styleable.StatusBarView_drawMode, defDrawMode)
-            colorBackground =
-                getColor(R.styleable.StatusBarView_colorBackground, defColorBackground)
-            cornerRadius =
-                getDimension(R.styleable.StatusBarView_myRounding, defCornerRadius)
-            gap =
-                getDimension(R.styleable.StatusBarView_gapBetween, defGap)
-            animationTime =
-                getInt(R.styleable.StatusBarView_animationTime, defAnimationTime)
+        context.withStyledAttributes(attributes, R.styleable.MaterialUsageIndicator) {
+            drawMode = getInt(
+                R.styleable.MaterialUsageIndicator_statusBar_drawMode,
+                DEFAULT_DRAW_MODE
+            )
+            colorBackground = getColor(
+                R.styleable.MaterialUsageIndicator_statusBar_colorBackground,
+                DEFAULT_COLOR_BACKGROUND
+            )
+            cornerRadius = getDimension(
+                R.styleable.MaterialUsageIndicator_statusBar_myRounding,
+                DEFAULT_CORNER_RADIUS
+            )
+            gap = getDimension(
+                R.styleable.MaterialUsageIndicator_statusBar_gapBetween,
+                DEFAULT_GAP
+            )
+            animationTime = getInt(
+                R.styleable.MaterialUsageIndicator_statusBar_animationTime,
+                DEFAULT_ANIMATION_TIME
+            )
+            isRoundingStatusLine = getBoolean(
+                R.styleable.MaterialUsageIndicator_statusBar_isRoundingStatusLine,
+                IS_ROUNDING_STATUS_LINE
+            )
         }
     }
 
@@ -106,8 +123,8 @@ class MaterialUsageIndicator @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
 
-        widthView = resolveSize(defWidth, widthMeasureSpec)
-        heightView = resolveSize(defHeight, heightMeasureSpec)
+        widthView = resolveSize(MIN_WIDTH, widthMeasureSpec)
+        heightView = resolveSize(MIN_HEIGHT, heightMeasureSpec)
 
         setMeasuredDimension(widthView, heightView)
     }
@@ -115,29 +132,40 @@ class MaterialUsageIndicator @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        rect.set(0f, 0f, widthView.toFloat(), heightView.toFloat())
         path.reset()
-        path.addRoundRect(rect, cornerRadius, cornerRadius, Path.Direction.CW)
+        path.addRoundRect(
+            0f,
+            0f,
+            widthView.toFloat(),
+            heightView.toFloat(),
+            cornerRadius,
+            cornerRadius,
+            Path.Direction.CW
+        )
 
         canvas?.clipPath(path)
 
-        paintBack.color = colorBackground
-        canvas?.drawRect(rect, paintBack)
+        paintBackground.color = colorBackground
+        canvas?.drawRect(
+            0f, 0f, widthView.toFloat(), heightView.toFloat(), paintBackground
+        )
 
         drawStat.forEach { element ->
             paintStatus.color = element.color
 
-            canvas?.drawRect(
+            canvas?.drawRoundRect(
                 element.left,
                 0f,
                 element.right,
                 heightView.toFloat(),
+                if (isRoundingStatusLine) cornerRadius else 0f,
+                if (isRoundingStatusLine) cornerRadius else 0f,
                 paintStatus
             )
         }
     }
 
-    private val drawOption1: () -> Unit = {
+    private val simpleRendering: () -> Unit = {
 
         drawStat.clear()
 
@@ -156,7 +184,7 @@ class MaterialUsageIndicator @JvmOverloads constructor(
     }
 
 
-    private val drawOptionAnimat1: () -> Unit = {
+    private val synchronousAnimation: () -> Unit = {
         drawOptions.elementAt(0).invoke()
 
         drawStat.forEach {
@@ -177,7 +205,7 @@ class MaterialUsageIndicator @JvmOverloads constructor(
         }.start()
     }
 
-    private val drawOptionAnimat2: () -> Unit = {
+    private val sequentialAnimation: () -> Unit = {
         drawOptions.elementAt(0).invoke()
 
         drawStat.forEach {
@@ -211,4 +239,11 @@ class MaterialUsageIndicator @JvmOverloads constructor(
             }
         }.start()
     }
+
+    private data class DrawStat(
+        var left: Float,
+        var right: Float,
+        val color: Int,
+        var rightForAnim: Float = 0f,
+    )
 }
