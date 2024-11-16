@@ -1,11 +1,10 @@
 package com.example.castomview
-import android.annotation.SuppressLint
+
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.castomview.databinding.ActivityMainBinding
 import com.example.castomview.statusbar.StatusElement
-import com.example.castomview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
