@@ -7,6 +7,17 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <com.example.castomview.statusbar.MaterialUsageIndicator
+        android:id="@+id/statusBar"
+        android:layout_width="350dp"
+        android:layout_height="20dp"
+        app:statusBar_animationTime="4000"
+        app:statusBar_colorBackground="#DEDADA"
+        app:statusBar_drawMode="1"
+        app:statusBar_gapBetween="7dp"
+        app:statusBar_isRoundingStatusLine="true"
+        app:statusBar_myRounding="10dp" />
+
     <com.example.castomview.statusIndicatorViewGroup.StatusIndicatorViewGroup
         android:id="@+id/firstStatus0"
         android:layout_width="match_parent"

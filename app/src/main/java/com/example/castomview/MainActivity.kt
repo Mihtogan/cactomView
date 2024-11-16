@@ -1,16 +1,26 @@
 package com.example.castomview
-
+import android.annotation.SuppressLint
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.castomview.databinding.ActivityMainBinding
+import com.example.castomview.statusbar.StatusElement
+import com.example.castomview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    var binding: ActivityMainBinding? = null
+
+    private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+
+        val defStatuses = listOf(
+            StatusElement(Color.GREEN, 4),
+            StatusElement(Color.YELLOW, 7),
+            StatusElement(Color.RED, 2)
+        )
 
         binding?.firstStatus0?.apply {
             setCount(4)
