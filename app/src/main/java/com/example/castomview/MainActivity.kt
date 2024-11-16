@@ -1,5 +1,5 @@
 package com.example.castomview
-import android.annotation.SuppressLint
+
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
             StatusElement(Color.RED, 2)
         )
 
+        binding?.firstStatus0?.apply {
+            setCount(4)
+            setTotalCount(36)
+        }
     }
 
     override fun onDestroy() {

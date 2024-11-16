@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MaterialUsageIndicator">
-        <attr name="statusBar_drawMode" format="integer" />
-        <attr name="statusBar_colorBackground" format="color" />
-        <attr name="statusBar_myRounding" format="dimension" />
-        <attr name="statusBar_gapBetween" format="dimension" />
-        <attr name="statusBar_animationTime" format="integer" />
-        <attr name="statusBar_isRoundingStatusLine" format="boolean" />
+    <attr name="statusBar_drawMode" format="integer" />
+    <attr name="statusBar_colorBackground" format="color" />
+    <attr name="statusBar_myRounding" format="dimension" />
+    <attr name="statusBar_gapBetween" format="dimension" />
+    <attr name="statusBar_animationTime" format="integer" />
+    <attr name="statusBar_isRoundingStatusLine" format="boolean" />
+
+    <declare-styleable name="StatusIndicatorViewGroup">
+        <attr name="statusIndicatorViewGroup_indicatorColor" format="color" />
+        <attr name="statusIndicatorViewGroup_statusTextColor" format="color" />
+        <attr name="statusIndicatorViewGroup_countColor" format="color" />
+        <attr name="statusIndicatorViewGroup_totalCountColor" format="color" />
+        <attr name="statusIndicatorViewGroup_statusText" format="string" />
+        <attr name="statusIndicatorViewGroup_indicatorSize" format="dimension" />
+        <attr name="statusIndicatorViewGroup_textSizeStatus" format="dimension" />
+        <attr name="statusIndicatorViewGroup_textSizeCount" format="dimension" />
+        <attr name="statusIndicatorViewGroup_textSizeTotalCount" format="dimension" />
     </declare-styleable>
 </resources>
