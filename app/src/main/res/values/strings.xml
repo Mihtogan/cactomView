@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Castom View</string>
+
+    <string name="statusOk">Отличный запас</string>
+    <string name="statusNorm">Удовлетворительный запас</string>
+    <string name="statusCrit">Критический запас</string>
 </resources>

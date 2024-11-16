@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <com.example.castomview.statusbar.MaterialUsageIndicator
         android:id="@+id/statusBar"
-        android:layout_width="350dp"
-        android:layout_height="20dp"
-        app:statusBar_animationTime="4000"
-        app:statusBar_colorBackground="#DEDADA"
-        app:statusBar_drawMode="1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        app:statusBar_animationTime="3000"
+        app:statusBar_colorBackground="@color/statusBarBackground"
+        app:statusBar_drawMode="0"
         app:statusBar_gapBetween="7dp"
-        app:statusBar_isRoundingStatusLine="true"
+        app:statusBar_isRoundingStatusLine="false"
         app:statusBar_myRounding="10dp" />
 
     <com.example.castomview.statusIndicatorViewGroup.StatusIndicatorViewGroup
@@ -24,15 +26,15 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="10dp"
-        app:statusIndicatorViewGroup_countColor="@color/black"
-        app:statusIndicatorViewGroup_indicatorColor="#00FF00"
-        app:statusIndicatorViewGroup_indicatorSize="25dp"
-        app:statusIndicatorViewGroup_statusText="Отличный запас"
-        app:statusIndicatorViewGroup_statusTextColor="#757272"
-        app:statusIndicatorViewGroup_textSizeCount="10sp"
-        app:statusIndicatorViewGroup_textSizeStatus="10sp"
-        app:statusIndicatorViewGroup_textSizeTotalCount="8sp"
-        app:statusIndicatorViewGroup_totalCountColor="#6F6C6C" />
+        app:statusIndicatorViewGroup_countColor="@color/statusCount"
+        app:statusIndicatorViewGroup_indicatorColor="@color/indicatorStatusOk"
+        app:statusIndicatorViewGroup_indicatorSize="20dp"
+        app:statusIndicatorViewGroup_statusText="@string/statusOk"
+        app:statusIndicatorViewGroup_statusTextColor="@color/statusText"
+        app:statusIndicatorViewGroup_textSizeCount="8sp"
+        app:statusIndicatorViewGroup_textSizeStatus="8sp"
+        app:statusIndicatorViewGroup_textSizeTotalCount="7sp"
+        app:statusIndicatorViewGroup_totalCountColor="@color/statusTotalCount" />
 
     <com.example.castomview.statusIndicatorViewGroup.StatusIndicatorViewGroup
         android:id="@+id/firstStatus1"
@@ -40,15 +42,15 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="10dp"
-        app:statusIndicatorViewGroup_countColor="@color/black"
-        app:statusIndicatorViewGroup_indicatorColor="#00FF00"
-        app:statusIndicatorViewGroup_indicatorSize="25dp"
-        app:statusIndicatorViewGroup_statusText="Отличный запас"
-        app:statusIndicatorViewGroup_statusTextColor="#757272"
-        app:statusIndicatorViewGroup_textSizeCount="10sp"
-        app:statusIndicatorViewGroup_textSizeStatus="10sp"
-        app:statusIndicatorViewGroup_textSizeTotalCount="8sp"
-        app:statusIndicatorViewGroup_totalCountColor="#6F6C6C" />
+        app:statusIndicatorViewGroup_countColor="@color/statusCount"
+        app:statusIndicatorViewGroup_indicatorColor="@color/indicatorStatusNorm"
+        app:statusIndicatorViewGroup_indicatorSize="20dp"
+        app:statusIndicatorViewGroup_statusText="@string/statusNorm"
+        app:statusIndicatorViewGroup_statusTextColor="@color/statusText"
+        app:statusIndicatorViewGroup_textSizeCount="8sp"
+        app:statusIndicatorViewGroup_textSizeStatus="8sp"
+        app:statusIndicatorViewGroup_textSizeTotalCount="7sp"
+        app:statusIndicatorViewGroup_totalCountColor="@color/statusTotalCount" />
 
     <com.example.castomview.statusIndicatorViewGroup.StatusIndicatorViewGroup
         android:id="@+id/firstStatus2"
@@ -56,13 +58,98 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="10dp"
-        app:statusIndicatorViewGroup_countColor="@color/black"
-        app:statusIndicatorViewGroup_indicatorColor="#00FF00"
-        app:statusIndicatorViewGroup_indicatorSize="25dp"
-        app:statusIndicatorViewGroup_statusText="Отличный запас"
-        app:statusIndicatorViewGroup_statusTextColor="#757272"
-        app:statusIndicatorViewGroup_textSizeCount="10sp"
-        app:statusIndicatorViewGroup_textSizeStatus="10sp"
-        app:statusIndicatorViewGroup_textSizeTotalCount="8sp"
-        app:statusIndicatorViewGroup_totalCountColor="#6F6C6C" />
+        app:statusIndicatorViewGroup_countColor="@color/statusCount"
+        app:statusIndicatorViewGroup_indicatorColor="@color/indicatorStatusCrit"
+        app:statusIndicatorViewGroup_indicatorSize="20dp"
+        app:statusIndicatorViewGroup_statusText="@string/statusCrit"
+        app:statusIndicatorViewGroup_statusTextColor="@color/statusText"
+        app:statusIndicatorViewGroup_textSizeCount="8sp"
+        app:statusIndicatorViewGroup_textSizeStatus="8sp"
+        app:statusIndicatorViewGroup_textSizeTotalCount="7sp"
+        app:statusIndicatorViewGroup_totalCountColor="@color/statusTotalCount" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/buttonSetDrawMod0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="drawMod 0" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/buttonSetDrawMod1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="drawMod 1" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/buttonSetDrawMod2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="drawMod 2" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/buttonRoundingStatusLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="rounding status line" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/buttonNoRoundingStatusLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="no rounding" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 </LinearLayout>

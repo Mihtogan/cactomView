@@ -16,14 +16,58 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding?.root)
 
         val defStatuses = listOf(
-            StatusElement(Color.GREEN, 4),
-            StatusElement(Color.YELLOW, 7),
-            StatusElement(Color.RED, 2)
+            StatusElement(Color.GREEN, 7),
+            StatusElement(Color.YELLOW, 10),
+            StatusElement(Color.RED, 3)
         )
 
-        binding?.firstStatus0?.apply {
-            setCount(4)
-            setTotalCount(36)
+        binding?.apply {
+            statusBar.setStatuses(defStatuses)
+
+            firstStatus0.apply {
+                setCount(7)
+                setTotalCount(20)
+            }
+            firstStatus1.apply {
+                setCount(10)
+                setTotalCount(20)
+            }
+            firstStatus2.apply {
+                setCount(3)
+                setTotalCount(20)
+            }
+
+            buttonSetDrawMod0.setOnClickListener {
+                binding?.statusBar?.apply {
+                    setDrawMode(0)
+                    reDraw()
+                }
+            }
+            buttonSetDrawMod1.setOnClickListener {
+                binding?.statusBar?.apply {
+                    setDrawMode(1)
+                    reDraw()
+                }
+            }
+            buttonSetDrawMod2.setOnClickListener {
+                binding?.statusBar?.apply {
+                    setDrawMode(2)
+                    reDraw()
+                }
+            }
+
+            buttonRoundingStatusLine.setOnClickListener {
+                binding?.statusBar?.apply {
+                    isRoundingStatusLine(true)
+                    reDraw()
+                }
+            }
+            buttonNoRoundingStatusLine.setOnClickListener {
+                binding?.statusBar?.apply {
+                    isRoundingStatusLine(false)
+                    reDraw()
+                }
+            }
         }
     }
 

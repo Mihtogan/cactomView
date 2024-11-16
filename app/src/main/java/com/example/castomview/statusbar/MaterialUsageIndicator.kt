@@ -112,8 +112,7 @@ class MaterialUsageIndicator @JvmOverloads constructor(
                 statusSymValue += it.value
             }
 
-            drawOptions.elementAt(drawMode).invoke()
-            invalidate()
+            reDraw()
         }
     }
 
@@ -121,12 +120,28 @@ class MaterialUsageIndicator @JvmOverloads constructor(
         animationTime = time
     }
 
+    fun setDrawMode(drawMod: Int) {
+        drawMode = if (drawMod in drawOptions.indices) drawMod else 0
+    }
+
+    fun reDraw() {
+        drawOptions.elementAt(drawMode).invoke()
+        invalidate()
+    }
+
+    fun isRoundingStatusLine(isRouning: Boolean) {
+        isRoundingStatusLine = isRouning
+    }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
 
-        widthView = resolveSize(MIN_WIDTH, widthMeasureSpec)
-        heightView = resolveSize(MIN_HEIGHT, heightMeasureSpec)
+        widthView = resolveSize(MIN_WIDTH, widthMeasureSpec) - paddingStart - paddingEnd
+        heightView = resolveSize(MIN_HEIGHT, heightMeasureSpec) - paddingTop - paddingBottom
 
-        setMeasuredDimension(widthView, heightView)
+        setMeasuredDimension(
+            widthView + paddingStart + paddingEnd,
+            heightView + paddingTop + paddingBottom
+        )
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -134,10 +149,10 @@ class MaterialUsageIndicator @JvmOverloads constructor(
 
         path.reset()
         path.addRoundRect(
-            0f,
-            0f,
-            widthView.toFloat(),
-            heightView.toFloat(),
+            paddingStart.toFloat(),
+            paddingTop.toFloat(),
+            (widthView + paddingStart).toFloat(),
+            (heightView + paddingTop).toFloat(),
             cornerRadius,
             cornerRadius,
             Path.Direction.CW
@@ -147,7 +162,11 @@ class MaterialUsageIndicator @JvmOverloads constructor(
 
         paintBackground.color = colorBackground
         canvas?.drawRect(
-            0f, 0f, widthView.toFloat(), heightView.toFloat(), paintBackground
+            paddingStart.toFloat(),
+            paddingTop.toFloat(),
+            (widthView + paddingStart).toFloat(),
+            (heightView + paddingTop).toFloat(),
+            paintBackground
         )
 
         drawStat.forEach { element ->
@@ -155,9 +174,9 @@ class MaterialUsageIndicator @JvmOverloads constructor(
 
             canvas?.drawRoundRect(
                 element.left,
-                0f,
+                paddingTop.toFloat(),
                 element.right,
-                heightView.toFloat(),
+                (heightView + paddingTop).toFloat(),
                 if (isRoundingStatusLine) cornerRadius else 0f,
                 if (isRoundingStatusLine) cornerRadius else 0f,
                 paintStatus
@@ -169,7 +188,7 @@ class MaterialUsageIndicator @JvmOverloads constructor(
 
         drawStat.clear()
 
-        var left = 0f
+        var left = paddingStart.toFloat()
         var right: Float
         val wid = widthView - (statuses.size - 1) * gap
 
@@ -218,7 +237,7 @@ class MaterialUsageIndicator @JvmOverloads constructor(
             duration = animationTime.toLong()
 
             addUpdateListener { animation ->
-                aniRig = widthView * animation.animatedValue as Float
+                aniRig = paddingStart + widthView * animation.animatedValue as Float
 
                 drawStat.forEach {
                     it.right = when {

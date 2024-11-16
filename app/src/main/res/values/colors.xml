@@ -5,4 +5,14 @@
     <color name="pacManBody">#FFE500</color>
     <color name="paManR">#FF1100</color>
 
+    <color name="statusBarBackground">#CACACA</color>
+
+    <color name="indicatorStatusOk">#00FF00</color>
+    <color name="indicatorStatusNorm">#FFC107</color>
+    <color name="indicatorStatusCrit">#E91E1E</color>
+
+    <color name="statusText">#A9A9A9</color>
+    <color name="statusCount">#3C3C3C</color>
+    <color name="statusTotalCount">#A9A9A9</color>
+
 </resources>
