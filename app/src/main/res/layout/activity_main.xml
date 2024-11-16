@@ -1,18 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <com.example.castomview.statusIndicatorViewGroup.StatusIndicatorViewGroup
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:statusText="ст"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/firstStatus0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        app:statusIndicatorViewGroup_countColor="@color/black"
+        app:statusIndicatorViewGroup_indicatorColor="#00FF00"
+        app:statusIndicatorViewGroup_indicatorSize="25dp"
+        app:statusIndicatorViewGroup_statusText="Отличный запас"
+        app:statusIndicatorViewGroup_statusTextColor="#757272"
+        app:statusIndicatorViewGroup_textSizeCount="10sp"
+        app:statusIndicatorViewGroup_textSizeStatus="10sp"
+        app:statusIndicatorViewGroup_textSizeTotalCount="8sp"
+        app:statusIndicatorViewGroup_totalCountColor="#6F6C6C" />
+
+    <com.example.castomview.statusIndicatorViewGroup.StatusIndicatorViewGroup
+        android:id="@+id/firstStatus1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        app:statusIndicatorViewGroup_countColor="@color/black"
+        app:statusIndicatorViewGroup_indicatorColor="#00FF00"
+        app:statusIndicatorViewGroup_indicatorSize="25dp"
+        app:statusIndicatorViewGroup_statusText="Отличный запас"
+        app:statusIndicatorViewGroup_statusTextColor="#757272"
+        app:statusIndicatorViewGroup_textSizeCount="10sp"
+        app:statusIndicatorViewGroup_textSizeStatus="10sp"
+        app:statusIndicatorViewGroup_textSizeTotalCount="8sp"
+        app:statusIndicatorViewGroup_totalCountColor="#6F6C6C" />
+
+    <com.example.castomview.statusIndicatorViewGroup.StatusIndicatorViewGroup
+        android:id="@+id/firstStatus2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        app:statusIndicatorViewGroup_countColor="@color/black"
+        app:statusIndicatorViewGroup_indicatorColor="#00FF00"
+        app:statusIndicatorViewGroup_indicatorSize="25dp"
+        app:statusIndicatorViewGroup_statusText="Отличный запас"
+        app:statusIndicatorViewGroup_statusTextColor="#757272"
+        app:statusIndicatorViewGroup_textSizeCount="10sp"
+        app:statusIndicatorViewGroup_textSizeStatus="10sp"
+        app:statusIndicatorViewGroup_textSizeTotalCount="8sp"
+        app:statusIndicatorViewGroup_totalCountColor="#6F6C6C" />
+</LinearLayout>
